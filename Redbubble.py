@@ -19,9 +19,9 @@ def uploadToRedbubble():
     # Set the Redbubble login information
     # username = 'KatieDeForest@outlook.com'
     # password = 'SfxZPCK5c$N#VKG&dhI*xLfWIINB3FWqmapXN5%7Z0k9iLfjuLfYpW9ImHpyy6#9#Snmzzk%qsfLZ9JP*vzUGgLu2uVvauvUhNFYAlzJLAYHPuZ&n!&Nlv6F$5tbP09t'
-    # design_upload = glob.glob("resources/*.png")
-    # print(design_upload)
-    #
+    design_upload = glob.glob("resources/*.png")
+    print(design_upload)
+
     # # Check if the current version of chromedriver exists and if it doesn't exist, download it automatically,then add chromedriver to path
     # driver = uc.Chrome(use_subprocess=True)
     # wait = WebDriverWait(driver, 20)
@@ -41,7 +41,7 @@ def uploadToRedbubble():
 
     for i in design_upload:
         # Take the design name and removing the extension
-        img_name = i[10:].split('.')[0]
+        img_name = i[10:]
         url_img = i
         title = i[10:].split(',', 1)[0]
         tags = i[10:].split(',', 1)[1]
