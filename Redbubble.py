@@ -1,31 +1,42 @@
-from selenium import webdriver
-import chromedriver_autoinstaller
+import undetected_chromedriver as uc
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
 import time
 import glob
 
+from selenium.webdriver.common.by import By
+
+def set_viewport_size(driver, width, height):
+    window_size = driver.execute_script("""
+        return [window.outerWidth - window.innerWidth + arguments[0],
+          window.outerHeight - window.innerHeight + arguments[1]];
+        """, width, height)
+    driver.set_window_size(*window_size)
 
 def uploadToRedbubble():
     # Set the Redbubble login information
-    username = 'KatieDeForest@outlook.com'
-    password = 'SfxZPCK5c$N#VKG&dhI*xLfWIINB3FWqmapXN5%7Z0k9iLfjuLfYpW9ImHpyy6#9#Snmzzk%qsfLZ9JP*vzUGgLu2uVvauvUhNFYAlzJLAYHPuZ&n!&Nlv6F$5tbP09t'
-    design_upload = glob.glob("resources/*.png")
-    print(design_upload)
-    base_design_url = 'https://www.redbubble.com/portfolio/images/128434997-beautiful-young-woman/duplicate'
-
-    # Check if the current version of chromedriver exists and if it doesn't exist, download it automatically,then add chromedriver to path
-    # chromedriver_autoinstaller.install()
-    # # Create new Instance of Chrome
-    # driver = webdriver.Chrome()
+    # username = 'KatieDeForest@outlook.com'
+    # password = 'SfxZPCK5c$N#VKG&dhI*xLfWIINB3FWqmapXN5%7Z0k9iLfjuLfYpW9ImHpyy6#9#Snmzzk%qsfLZ9JP*vzUGgLu2uVvauvUhNFYAlzJLAYHPuZ&n!&Nlv6F$5tbP09t'
+    # design_upload = glob.glob("resources/*.png")
+    # print(design_upload)
     #
-    # # Open the base design webpage
+    # # Check if the current version of chromedriver exists and if it doesn't exist, download it automatically,then add chromedriver to path
+    # driver = uc.Chrome(use_subprocess=True)
+    # wait = WebDriverWait(driver, 20)
+    # base_design_url = 'https://www.redbubble.com/portfolio/images/128434997-beautiful-young-woman/duplicate'
     # driver.get(base_design_url)
+    #
     # # find username/email field and send the username itself to the input field
-    # driver.find_element_by_id("ReduxFormInput1").send_keys(username)
+    # wait.until(EC.visibility_of_element_located((By.ID, "ReduxFormInput1"))).send_keys(username)
     # # find password input field and insert password as well
-    # driver.find_element_by_id("ReduxFormInput2").send_keys(password)
+    # wait.until(EC.visibility_of_element_located((By.ID, "ReduxFormInput2"))).send_keys(password)
     # # click login button
-    # driver.find_element_by_css_selector(
-    #     ".app-ui-components-Button-Button_button_1_MpP.app-ui-components-Button-Button_primary_pyjm6.app-ui-components-Button-Button_padded_1fH5b").click()
+    # driver.find_element(By.CSS_SELECTOR,
+    #                     ".app-ui-components-Button-Button_button_1_MpP.app-ui-components-Button-Button_primary_pyjm6"
+    #                     ".app-ui"
+    #                     "-components-Button-Button_padded_1fH5b").click()
     # time.sleep(20)
 
     for i in design_upload:
