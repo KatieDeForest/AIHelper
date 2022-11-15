@@ -1,23 +1,25 @@
-import cv2
-from cv2 import dnn_superres
+import Redbubble
+import Upscaler
+from Upscaler import *
+from Redbubble import *
+import os
 
-# Create an SR object
-sr = dnn_superres.DnnSuperResImpl_create()
+# assign directory
 
-# Read image
-image = cv2.imread('resources/Humanoid Cat #ai #images #nigi #cat.png')
+# iterate over files in
+# that directory
 
-# Read the desired model
-# path = "EDSR_x3.pb"
-# Download this and place the file in root - https://github.com/fannymonori/TF-ESPCN/blob/master/export/ESPCN_x2.pb
-path = "ESPCN_x2.pb"
-sr.readModel(path)
 
-# Set the desired model and scale to get correct pre- and post-processing
-sr.setModel("espcn", 2)
+def main():
+    directory = 'resources'
+    for filename in os.listdir(directory):
+        f = os.path.join(directory, filename)
+        # checking if it is a file
+        if os.path.isfile(f):
+            Upscaler.upScaleImage(f)
+            Redbubble.uploadToRedbubble()
 
-# Upscale the image
-result = sr.upsample(image)
 
-# Save the image
-cv2.imwrite("./resources/result.png", result)
+
+if __name__ == "__main__":
+    main()
